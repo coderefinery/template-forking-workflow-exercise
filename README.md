@@ -19,7 +19,7 @@ Then add a file `group-X.py` where X is your group number or group name, e.g. `g
 **Add only one file per group**. (Why?)
 
 This file should contain a function called `tweet()` which returns
-a string of maximum 140 characters, for instance:
+a string of maximum 280 characters, for instance:
 
 ```python
 def tweet():

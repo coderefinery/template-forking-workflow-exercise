@@ -1,14 +1,18 @@
 """
-This will loop through all the files with group*.py and assert that their
-tweet()-function returns a string that is less than 280 characters long.
+This will loop through all files *.md and check that they contain the string
+'taco' (case-insensitive).
 """
 
+from __future__ import print_function
 import os
+import sys
 
 for filename in os.listdir("."):
-    if filename.startswith("group") and filename.endswith(".py"):
-        module_name = filename[:-3]  # ignore .py at the end
-        module = __import__(module_name)
-        tweet_content = module.tweet().encode('utf-8')
-        assert len(tweet_content) <= 280, \
-            "tweet is too long: '{}'".format(tweet_content)
+    if filename.endswith(".md"):
+        with open(filename, 'r') as f:
+            recipe = f.read().lower()
+            if not 'taco' in recipe:
+                print("file {0} contains no string 'taco'".format(filename), file=sys.stderr)
+                sys.exit(1)
+
+print("all *.md files contain the string 'taco'")

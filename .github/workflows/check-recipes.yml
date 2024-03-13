@@ -1,0 +1,27 @@
+# This workflow will check that each recipe has an "Instructions" and
+# "Ingredients" Markdown section (line starting with `#`).
+name: Basic recipe checks
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.x"
+    - name: Test with pytest
+      run: |
+        python check_recipes.py
